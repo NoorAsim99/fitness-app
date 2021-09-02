@@ -61,12 +61,26 @@ Open the `server` and `client` in separate VSCode workspaces or open the combine
 
 ### Purpose
 
-2-5 sentences describing what the system does
+Fitness Tracker:
+
+The fitness tracker will allow you to write fully customized training programs for yourself, for any type of training pursuit or sport you are interested in. 
+
+The app enables you to create a list of exercises so that you can easily choose between them to create your training programs. 
+
+When creating programs you will be able to choose a date and decide what exercises you are performing on that date, as well as the volume (consisting of sets and reps) and intensity which will be input as either RPE or a percentage of your 1RM (one rep max).
+
+The app will also allow you to keep a training log, where you write notes on the state of your training and your progress. 
+
 
 ### Pages
 
-* Home: 1-3 sentences describing what the page displays and what a user can do
-* Shopping cart: ...
+* Home: This page will show you links to all the sub-menus of the app, such as Exercises, Program and Training log. It will also show you your program for the current week. 
+* Exercises: A page showing you a link to the list of exercises you have already created and a link to a page where you will create new exercises to add to the list. 
+* Training Log: A page where you can make notes to keep track of your progress or anything you find relevant.
+* View Training Log Entry: This page will show you a specific entry into the training log, chosen on the Training Log page.
+* Create New Exercise: A page that asks you to input the name of an exercise that will be added to your list of exercises and optionally your Personal Best in that exercise. 
+* List Of Exercises: A page that shows a list of all the exercises you have input into the app. 
+
 
 ### Entity-Relationship (ER) Diagram
 
