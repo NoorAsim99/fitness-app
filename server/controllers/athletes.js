@@ -33,6 +33,21 @@ router.get('/api/athletes/:id', function(req, res, next) {
     });
 });
 
+// Partially update the athlete with the given id by adding the id of a workout
+router.patch('/api/athletes/:id/:workoutId', function(req, res, next) {
+    var id = req.params.id;
+    var workId = req.params.workoutId;
+    Athlete.findById(id, function(err, athlete) {
+        if (err) { return next(err); }
+        if (athlete == null) {
+            return res.status(404).json({"message": "Athlete not found"});
+        }
+        athlete.workouts.push(workId)
+        athlete.save();
+        res.json(athlete);
+    });
+});
+
 // Update the athlete with the given ID
 router.put('/api/athletes/:id/:newName', function(req, res, next) {
     var id = req.params.id;
@@ -47,22 +62,6 @@ router.put('/api/athletes/:id/:newName', function(req, res, next) {
         res.json(athlete);
     });
 });
-/*
-// Partially update the athlete with the given ID
-app.patch('/camels/:id', function(req, res, next) {
-    var id = req.params.id;
-    Camel.findById(id, function(err, camel) {
-        if (err) { return next(err); }
-        if (camel == null) {
-            return res.status(404).json({"message": "Camel not found"});
-        }
-        camel.color = (req.body.color || camel.color);
-        camel.position = (req.body.position || camel.position);
-        camel.save();
-        res.json(camel);
-    });
-});
-*/
 
 // Delete the athlete with the given ID
 router.delete('/api/athletes/:id', function(req, res, next) {

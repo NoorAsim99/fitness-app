@@ -4,10 +4,12 @@ var morgan = require('morgan');
 var path = require('path');
 var cors = require('cors');
 var history = require('connect-history-api-fallback');
-var athletesController = require('./controllers/athletes')
+var athletesController = require('./controllers/athletes');
+var exercisesController = require('./controllers/exercise');
+var workoutController = require('./controllers/workout');
 
 // Variables
-var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/athlete';
+var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/fitnessApp';
 var port = process.env.PORT || 3000;
 
 // Connect to MongoDB
@@ -37,6 +39,8 @@ app.get('/api', function(req, res) {
 });
 
 app.use(athletesController);
+app.use(exercisesController);
+app.use(workoutController);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
