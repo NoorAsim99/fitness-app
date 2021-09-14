@@ -74,8 +74,7 @@ router.patch('/api/athletes/:id/:workoutId', function(req, res, next) {
 });
 
 // Update the athlete with the given ID
-//router.put('/api/athletes/:id/:newName', function(req, res, next) {
-    router.put('/api/athletes/:id', function(req, res, next) {    
+router.put('/api/athletes/:id', function(req, res, next) {    
     var id = req.params.id;
     var newName = req.body.username;
     Athlete.findById(id, function(err, athlete) {
