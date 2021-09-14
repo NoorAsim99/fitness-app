@@ -36,36 +36,24 @@ router.get('/api/workouts/:id', function(req, res, next) {
 router.get('/api/workouts/:id/exercises', function(req, res, next) {
 
     var id = req.params.id;
-    var exercisesArr = [];
 
-    // 1. Find the workout with the given id, then for every exercise id within the workout
-    // get the full info and append it to the array exercisesArr
     Workout.findById(req.params.id, function(err, workout) {
         if (err) { return next(err); }
         if (workout == null) {
             return res.status(404).json({"message": "Workout not found"});
         }
-        
-        for (let i = 0; i < workout.exercises.length; i++) {
-            Exercise.findById(workout.exercises[i], function(err, exercise) {
-                if (err) { return next(err); }
-                if (exercise != null) {
-                    exercisesArr.push(exercise);
-                }
-            });
-        }
+
+        Exercise.find({
+            '_id': { $in: workout.exercises }
+        }, function(err, foundExercises){
+             if (foundExercises.length > 0) {
+                return res.status(200).json(foundExercises);
+             } else {
+                console.log("404");
+                return res.status(404).json({"message": "Exercises not found"});
+            }
+        });
     });
-
-    // 2. Once the code above has added all exercises to the array, return that array to the client
-    setTimeout(function() {
-        if (exercisesArr.length > 0) {
-            return res.status(200).json(exercisesArr);
-         } else {
-            console.log("404");
-            return res.status(404).json({"message": "Exercises not found"});
-        }
-    }, 500);
-
 });
 
 // Get a specific exercise in a workout
@@ -73,9 +61,7 @@ router.get('/api/workouts/:id/exercises/:exercise_id', function(req, res, next) 
 
     var id = req.params.id;
     var exerciseId = req.params.exercise_id;
-
-    // 1. Find the workout with the given id, then for every exercise id within the workout
-    // get the full info and append it to the array exercisesArr
+    
     Workout.findById(req.params.id, function(err, workout) {
         if (err) { return next(err); }
         if (workout == null) {
@@ -104,8 +90,6 @@ router.delete('/api/workouts/:id/exercises/:exercise_id', function(req, res, nex
     var id = req.params.id;
     var exerciseId = req.params.exercise_id;
 
-    // 1. Find the workout with the given id, then for every exercise id within the workout
-    // get the full info and append it to the array exercisesArr
     Workout.findById(req.params.id, function(err, workout) {
         if (err) { return next(err); }
         if (workout == null) {
