@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Athlete = require('../models/athlete');
+var Workout = require('../models/workout');
 
 // Create a new athlete
 router.post('/api/athletes', function(req, res, next){
@@ -30,6 +31,30 @@ router.get('/api/athletes/:id', function(req, res, next) {
             return res.status(404).json({"message": "Athlete not found"});
         }
         res.json(athlete);
+    });
+});
+
+// Return the workouts in an athlete with the given ID
+router.get('/api/athletes/:id/workouts', function(req, res, next) {
+
+    var id = req.params.id;
+
+    Athlete.findById(req.params.id, function(err, athlete) {
+        if (err) { return next(err); }
+        if (athlete == null) {
+            return res.status(404).json({"message": "Athlete not found"});
+        }
+
+        Workout.find({
+            '_id': { $in: athlete.workouts }
+        }, function(err, foundWorkouts){
+             if (foundWorkouts.length > 0) {
+                return res.status(200).json(foundWorkouts);
+             } else {
+                console.log("404");
+                return res.status(404).json({"message": "Workouts not found"});
+            }
+        });
     });
 });
 

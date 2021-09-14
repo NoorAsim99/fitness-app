@@ -61,7 +61,7 @@ router.get('/api/workouts/:id/exercises/:exercise_id', function(req, res, next) 
 
     var id = req.params.id;
     var exerciseId = req.params.exercise_id;
-    
+
     Workout.findById(req.params.id, function(err, workout) {
         if (err) { return next(err); }
         if (workout == null) {
@@ -110,6 +110,7 @@ router.delete('/api/workouts/:id/exercises/:exercise_id', function(req, res, nex
                 workout.save();
             });
         }*/
+
         // This will only remove the exercise from the workout, without deleting it from the DB
         if(workout.exercises.includes(exerciseId)) {
             workout.exercises = workout.exercises.filter(function(value, index, arr){ 
