@@ -3,8 +3,8 @@ var router = express.Router();
 var Exercise = require('../models/exercise');
 
 // Create a new exercise
-router.post('/api/exercises/:title/:repetitions/:sets', function(req, res, next){
-    const exercise = Exercise({title: req.params.title, repetitions: req.params.repetitions, sets: req.params.sets});
+router.post('/api/exercises', function(req, res, next){
+    const exercise = Exercise({title: req.body.title, repetitions: req.body.repetitions, sets: req.body.sets});
     exercise.save(function(err, exercise){
         if (err) {return next(err);}
         res.status(201).json(exercise);
@@ -34,16 +34,16 @@ router.get('/api/exercises/:id', function(req, res, next) {
 
 
 // Update the exercise with the given ID
-router.put('/api/exercises/:id/:newTitle/:newRepetitions/:newSets', function(req, res, next) {
+router.put('/api/exercises/:id', function(req, res, next) {
     var id = req.params.id;
     Exercise.findById(id, function(err, exercise) {
         if (err) { return next(err); }
         if (exercise == null) {
             return res.status(404).json({"message": "Exercise not found"});
         }
-        exercise.title = req.params.newTitle;
-        exercise.repetitions = req.params.newRepetitions;
-        exercise.sets = req.params.newSets;
+        exercise.title = req.body.title;
+        exercise.repetitions = req.body.repetitions;
+        exercise.sets = req.body.sets;
         exercise.save();
         res.json(exercise);
     });

@@ -4,8 +4,8 @@ var Workout = require('../models/workout');
 var Exercise = require('../models/exercise');
 
 // Create a new workout
-router.post('/api/workouts/:title', function(req, res, next){
-    const workout = Workout({title: req.params.title, exercises: []});
+router.post('/api/workouts', function(req, res, next){
+    const workout = Workout({title: req.body.title, exercises: []});
     workout.save(function(err, workout){
         if (err) {return next(err);}
         res.status(201).json(workout);
@@ -46,7 +46,7 @@ router.get('/api/workouts/:id/exercises', function(req, res, next) {
         Exercise.find({
             '_id': { $in: workout.exercises }
         }, function(err, foundExercises){
-             if (foundExercises.length > 0) {
+             if (foundExercises.length != null) {
                 return res.status(200).json(foundExercises);
              } else {
                 console.log("404");
@@ -74,7 +74,7 @@ router.get('/api/workouts/:id/exercises/:exercise_id', function(req, res, next) 
                 if (exercise == null) {
                     return res.status(404).json({"message": "Exercise not found"});
                 }
-                res.json(exercise);
+                return res.status(200).json(exercise);
             });
         }
         else {
@@ -127,7 +127,7 @@ router.delete('/api/workouts/:id/exercises/:exercise_id', function(req, res, nex
 });
 
 // Partially update the workout with the given id by adding the id of an exercise 
-router.patch('/api/workouts/:id/:exerciseId', function(req, res, next) {
+router.patch('/api/workouts/:id/exercises/:exerciseId', function(req, res, next) {
     var id = req.params.id;
     var exerId = req.params.exerciseId;
     Workout.findById(id, function(err, workout) {
