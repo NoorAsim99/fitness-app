@@ -31,7 +31,7 @@ router.delete('/api/traininglogs/:id', function(req, res, next) {
         if (traininglog == null) {
             return res.status(404).json({"message": "traininglog not found"});
         }
-        res.json(traininglog);
+        res.status(204).json(traininglog);
     });
 });
 
