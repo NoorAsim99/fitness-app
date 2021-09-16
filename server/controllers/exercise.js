@@ -22,7 +22,7 @@ router.get('/api/exercises', function(req, res, next) {
     });
 });
 
-// Return a list of all exercises
+// Return a list of an exercise if its title contains the search query
 router.get('/api/exercises/search', function(req, res, next) {
     const title = req.body.title;
     Exercise.find(

@@ -113,7 +113,6 @@ router.delete('/api/workouts/:id/exercises/:exercise_id', function(req, res, nex
         if (workout == null) {
             return res.status(404).json({"message": "Workout not found"});
         }
-
         /* This will also delete the exercise from the database
         if(workout.exercises.includes(exerciseId)) {
             Exercise.findOneAndDelete({_id: exerciseId}, function(err, exercise) {

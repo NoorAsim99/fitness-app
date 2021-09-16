@@ -7,6 +7,7 @@ var history = require('connect-history-api-fallback');
 var athletesController = require('./controllers/athletes');
 var exercisesController = require('./controllers/exercise');
 var workoutController = require('./controllers/workout');
+var traininglogController = require('./controllers/traininglog');
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/fitnessApp';
@@ -41,6 +42,7 @@ app.get('/api', function(req, res) {
 app.use(athletesController);
 app.use(exercisesController);
 app.use(workoutController);
+app.use(traininglogController);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {
