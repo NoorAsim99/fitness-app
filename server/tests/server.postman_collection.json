@@ -156,6 +156,56 @@
 			"response": []
 		},
 		{
+			"name": "POST new workout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"var workoutId = jsonData._id\r",
+							"pm.environment.set(\"workout_id\", workoutId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Monday\",\r\n    \"exercises\": []\r\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/workouts",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"workouts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "GET all athletes",
 			"event": [
 				{
