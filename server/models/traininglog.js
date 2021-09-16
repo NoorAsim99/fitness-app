@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
-var traininglog = mongoose.traininglog;
+var Schema = mongoose.Schema;
 
-var traininglog = new traininglog({
+var traininglog = new Schema({
     title : { type : String},
     date : { type : String},
 
