@@ -15,7 +15,24 @@ router.post('/api/exercises', function(req, res, next){
 router.get('/api/exercises', function(req, res, next) {
     Exercise.find(function(err, exercises) {
         if (err) { return next(err); }
+        if (exercises == null) {
+            return res.status(404).json({"message": "Exercises not found"});
+        }
         res.json({"exercises": exercises});
+    });
+});
+
+// Return a list of all exercises
+router.get('/api/exercises/search', function(req, res, next) {
+    const title = req.body.title;
+    Exercise.find(
+        { "title": { "$regex": title, "$options": "i" } },
+        function(err, exercises) { 
+            if (err) { return next(err); }
+            if (exercises == null) {
+                return res.status(404).json({"message": "Exercises not found"});
+            }
+            res.json({"exercises": exercises});
     });
 });
 
