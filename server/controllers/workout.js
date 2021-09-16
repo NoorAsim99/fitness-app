@@ -12,6 +12,25 @@ router.post('/api/workouts', function(req, res, next){
     })
 });
 
+// Create a new exercise and directly add it to a workout
+router.post('/api/workouts/:id/exercises', function(req, res, next) {
+    var id = req.params.id;
+    const exercise = Exercise({title: req.body.title, repetitions: req.body.repetitions, sets: req.body.sets});
+    Workout.findById(req.params.id, function(err, workout) {
+        if (err) { return next(err); }
+        if (workout == null) {
+            return res.status(404).json({"message": "Workout not found"});
+        }
+        exercise.save(function(err, exercise){
+            if (err) {return next(err);}
+            res.status(201).json(exercise);
+        })
+        workout.exercises.push(exercise._id);
+        workout.save();
+        res.json(workout);
+    });
+});
+
 // Return a list of all workouts
 router.get('/api/workouts', function(req, res, next) {
     Workout.find(function(err, workouts) {
@@ -49,7 +68,6 @@ router.get('/api/workouts/:id/exercises', function(req, res, next) {
              if (foundExercises.length != null) {
                 return res.status(200).json(foundExercises);
              } else {
-                console.log("404");
                 return res.status(404).json({"message": "Exercises not found"});
             }
         });
@@ -95,7 +113,6 @@ router.delete('/api/workouts/:id/exercises/:exercise_id', function(req, res, nex
         if (workout == null) {
             return res.status(404).json({"message": "Workout not found"});
         }
-        
         /* This will also delete the exercise from the database
         if(workout.exercises.includes(exerciseId)) {
             Exercise.findOneAndDelete({_id: exerciseId}, function(err, exercise) {

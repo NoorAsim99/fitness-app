@@ -51,7 +51,6 @@ router.get('/api/athletes/:id/workouts', function(req, res, next) {
              if (foundWorkouts.length != null) {
                 return res.status(200).json(foundWorkouts);
              } else {
-                console.log("404");
                 return res.status(404).json({"message": "Workouts not found"});
             }
         });
