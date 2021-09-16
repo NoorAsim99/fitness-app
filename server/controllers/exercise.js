@@ -4,7 +4,7 @@ var Exercise = require('../models/exercise');
 
 // Create a new exercise
 router.post('/api/exercises', function(req, res, next){
-    const exercise = Exercise({title: req.body.title, repetitions: req.body.repetitions, sets: req.body.sets});
+    const exercise = Exercise({title: req.body.title, repetitions: req.body.repetitions, sets: req.body.sets, intensity: req.body.intensity});
     exercise.save(function(err, exercise){
         if (err) {return next(err);}
         res.status(201).json(exercise);
@@ -61,27 +61,11 @@ router.put('/api/exercises/:id', function(req, res, next) {
         exercise.title = req.body.title;
         exercise.repetitions = req.body.repetitions;
         exercise.sets = req.body.sets;
+        exercise.intensity = req.body.intensity;
         exercise.save();
         res.json(exercise);
     });
 });
-
-/*
-// Partially update the exercise with the given ID -- IDK HOW TO USE RIGHT NOW
-app.patch('/camels/:id', function(req, res, next) {
-    var id = req.params.id;
-    Camel.findById(id, function(err, camel) {
-        if (err) { return next(err); }
-        if (camel == null) {
-            return res.status(404).json({"message": "Camel not found"});
-        }
-        camel.color = (req.body.color || camel.color);
-        camel.position = (req.body.position || camel.position);
-        camel.save();
-        res.json(camel);
-    });
-});
-*/
 
 // Delete the exercise with the given ID
 router.delete('/api/exercises/:id', function(req, res, next) {

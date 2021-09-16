@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var traininglogSchema = new Schema({
-    title : { type : String},
+    entry : { type : String},
     date : { type : String},
 
 });
