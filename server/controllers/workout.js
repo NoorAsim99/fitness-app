@@ -138,7 +138,7 @@ router.delete('/api/workouts/:id/exercises/:exercise_id', function(req, res, nex
                 return value != exerciseId;
             });
             workout.save();
-            res.json(workout);
+            res.status(204).json(workout);
         }
         else {
             return res.status(404).json({"message": "Exercise not found"});
@@ -189,7 +189,7 @@ router.delete('/api/workouts/:id', function(req, res, next) {
         if (workout == null) {
             return res.status(404).json({"message": "Workout not found"});
         }
-        res.json(workout);
+        res.status(204).json(workout);
     });
 });
 

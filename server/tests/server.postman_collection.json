@@ -1,46 +1,29 @@
 {
 	"info": {
-		"_postman_id": "4d3b3425-8c29-48c8-a68c-69ed86767152",
-		"name": "server",
+		"_postman_id": "105e3543-84ee-490a-a548-7588f83d75cc",
+		"name": "Athletes test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "GET /api",
+			"name": "POST new athlete",
 			"event": [
 				{
-					"listen": "prerequest",
+					"listen": "test",
 					"script": {
 						"exec": [
-							""
+							"pm.test(\"Status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"var athleteId = jsonData._id\r",
+							"pm.environment.set(\"athlete_id\", athleteId);"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "{{host}}/api",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"api"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "New Request",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -57,7 +40,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\" : \"Alex\"\r\n}"
+					"raw": "{\r\n    \"username\": \"Alex\",\r\n    \"workouts\": [\"6140b758e33680169cb7fec9\"]\r\n}"
 				},
 				"url": {
 					"raw": "{{host}}/api/athletes",
@@ -67,13 +50,1061 @@
 					"path": [
 						"api",
 						"athletes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST new exercise",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"var exerciseId = jsonData._id\r",
+							"pm.environment.set(\"exercise_id\", exerciseId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n\"title\": \"Bench press\",\r\n\"repetitions\": \"5\",\r\n\"sets\": \"4\",\r\n\"intensity\": \"RPE 10\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/exercises",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"exercises"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a log entry",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"var trainingLogId = jsonData._id\r",
+							"pm.environment.set(\"trainingLog_id\", trainingLogId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"entry\": \"Had a great workout\",\r\n    \"date\": \"16-09-2040\"\r\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/traininglogs",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"traininglogs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST new workout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"var workoutId = jsonData._id\r",
+							"pm.environment.set(\"workout_id\", workoutId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Monday\",\r\n    \"exercises\": []\r\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/workouts",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"workouts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET all athletes",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/athletes",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"athletes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET athlete with given ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/athletes/{{athlete_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"athletes",
+						"{{athlete_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET all workouts in athlete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/athletes/{{athlete_id}}/workouts?",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"athletes",
+						"{{athlete_id}}",
+						"workouts"
 					],
 					"query": [
 						{
 							"key": "",
-							"value": "",
-							"disabled": true
+							"value": null
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET all exercises",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/exercises?",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"exercises"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET exercise with given ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/exercises/{{exercise_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"exercises",
+						"{{exercise_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET workout with ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/workouts/{{workout_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"workouts",
+						"{{workout_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search using title",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Bench press\"\r\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/exercises/search",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"exercises",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET a log entry with id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/traininglogs/{{trainingLog_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"traininglogs",
+						"{{trainingLog_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all workouts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/workouts",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"workouts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT update athlete name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Not Alex\",\r\n    \"workouts\": [\"6140b758e33680169cb7fec9\"]\r\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/athletes/{{athlete_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"athletes",
+						"{{athlete_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT update exercise with ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n\"title\": \"Bench press\",\r\n\"repetitions\": \"3\",\r\n\"sets\": \"5\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/exercises/{{exercise_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"exercises",
+						"{{exercise_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add exercise to workout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/workouts/{{workout_id}}/exercises/{{exercise_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"workouts",
+						"{{workout_id}}",
+						"exercises",
+						"{{exercise_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add workout to athlete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/athletes/{{athlete_id}}/61408e73e941f709c36067c9?",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"athletes",
+						"{{athlete_id}}",
+						"61408e73e941f709c36067c9"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET exercises within workout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/workouts/{{workout_id}}/exercises?",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"workouts",
+						"{{workout_id}}",
+						"exercises"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET a specific exercise within a workout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/workouts/{{workout_id}}/exercises/{{exercise_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"workouts",
+						"{{workout_id}}",
+						"exercises",
+						"{{exercise_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE exercise with ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function(){\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/exercises/{{exercise_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"exercises",
+						"{{exercise_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE remove athlete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function(){\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/athletes/{{athlete_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"athletes",
+						"{{athlete_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a specific exercise within a workout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function(){\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/workouts/{{workout_id}}/exercises/{{exercise_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"workouts",
+						"{{workout_id}}",
+						"exercises",
+						"{{exercise_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE workout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function(){\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/workouts/{{workout_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"workouts",
+						"{{workout_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a log entry",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function(){\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/traininglogs/{{trainingLog_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"traininglogs",
+						"{{trainingLog_id}}"
 					]
 				}
 			},
@@ -103,8 +1134,7 @@
 	"variable": [
 		{
 			"key": "host",
-			"value": "http://localhost:3000",
-			"type": "string"
+			"value": "http://localhost:3000"
 		}
 	]
 }

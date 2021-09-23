@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var traininglog = require('../models/traininglog');
+var Traininglog = require('../models/traininglog');
 
 //create a training log, how do i impliment a date?
-router.post('/api/traininglog', function(req, res, next){
-    var traininglog = new traininglog(req.body);
+router.post('/api/traininglogs', function(req, res, next){
+    var traininglog = new Traininglog(req.body);
     traininglog.save(function(err, traininglog){
         if (err) {return next(err);}
         res.status(201).json(traininglog);
@@ -12,9 +12,9 @@ router.post('/api/traininglog', function(req, res, next){
 });
 
 //return the training log of an athlete with the given ID
-router.get('/api/traininglog/:id', function(req, res, next) {
+router.get('/api/traininglogs/:id', function(req, res, next) {
     var id = req.params.id;
-    traininglog.findById(req.params.id, function(err, traininglog) {
+    Traininglog.findById(req.params.id, function(err, traininglog) {
         if (err) { return next(err); }
         if (traininglog== null) {
             return res.status(404).json({"message": "training log not found"});
@@ -24,14 +24,14 @@ router.get('/api/traininglog/:id', function(req, res, next) {
 });
 
 //delete a training log, not sure how to impliment it 
-router.delete('/api/traininglog/:id', function(req, res, next) {
+router.delete('/api/traininglogs/:id', function(req, res, next) {
     var id = req.params.id;
-    traininglog.findOneAndDelete({_id: id}, function(err, traininglog) {
+    Traininglog.findOneAndDelete({_id: id}, function(err, traininglog) {
         if (err) { return next(err); }
         if (traininglog == null) {
             return res.status(404).json({"message": "traininglog not found"});
         }
-        res.json(traininglog);
+        res.status(204).json(traininglog);
     });
 });
 

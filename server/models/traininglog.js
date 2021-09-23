@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var traininglog = new Schema({
-    title : { type : String},
+var traininglogSchema = new Schema({
+    entry : { type : String},
     date : { type : String},
 
 });
 
-module.exports = mongoose.model('traininglog', traininglog);
+module.exports = mongoose.model('traininglogs', traininglogSchema);
