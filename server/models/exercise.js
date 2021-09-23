@@ -9,3 +9,5 @@ var exerciseSchema = new Schema({
 });
 
 module.exports = mongoose.model('exercises', exerciseSchema);
+
+//username : { type: String, required: true, unique: true}

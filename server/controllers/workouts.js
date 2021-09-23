@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Workout = require('../models/workout');
 var Exercise = require('../models/exercise');
+const { populate } = require('../models/exercise');
 
 // Create a new workout
 router.post('/api/workouts', function(req, res, next){
