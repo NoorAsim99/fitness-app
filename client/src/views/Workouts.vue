@@ -17,7 +17,7 @@ export default {
     'workout-item': WorkoutItem
   },
   mounted() {
-    Api.get('/workouts')
+    Api.get('workouts')
       .then(response => {
         console.log(response)
         this.workouts = response.data.workouts
