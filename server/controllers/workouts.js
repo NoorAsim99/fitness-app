@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Workout = require('../models/workout');
 var Exercise = require('../models/exercise');
+const { populate } = require('../models/exercise');
 
 // Create a new workout
 router.post('/api/workouts', function(req, res, next){
@@ -15,7 +16,7 @@ router.post('/api/workouts', function(req, res, next){
 // Create a new exercise and directly add it to a workout
 router.post('/api/workouts/:id/exercises', function(req, res, next) {
     var id = req.params.id;
-    const exercise = Exercise({title: req.body.title, repetitions: req.body.repetitions, sets: req.body.sets});
+    const exercise = Exercise({id: req.body._id, title: req.body.title, repetitions: req.body.repetitions, sets: req.body.sets});
     Workout.findById(req.params.id, function(err, workout) {
         if (err) { return next(err); }
         if (workout == null) {
@@ -23,11 +24,12 @@ router.post('/api/workouts/:id/exercises', function(req, res, next) {
         }
         exercise.save(function(err, exercise){
             if (err) {return next(err);}
-            res.status(201).json(exercise);
+            
         })
         workout.exercises.push(exercise._id);
         workout.save();
-        res.json(workout);
+        
+        res.status(201).json(workout);
     });
 });
 
