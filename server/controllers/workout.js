@@ -121,7 +121,7 @@ router.delete('/api/workouts/:id/exercises/:exercise_id', function(req, res, nex
                     return res.status(404).json({"message": "Exercise not found"});
                 }
                 res.json(exercise);
-                workout.exercises = workout.exercises.filter(function(value, index, arr){ 
+                workout.exercises = workout.exercises.filter(function(value, index, arr){
                     return value != exerciseId;
                 });
                 workout.save();
@@ -130,7 +130,7 @@ router.delete('/api/workouts/:id/exercises/:exercise_id', function(req, res, nex
 
         // This will only remove the exercise from the workout, without deleting it from the DB
         if(workout.exercises.includes(exerciseId)) {
-            workout.exercises = workout.exercises.filter(function(value, index, arr){ 
+            workout.exercises = workout.exercises.filter(function(value, index, arr){
                 return value != exerciseId;
             });
             workout.save();
@@ -143,7 +143,7 @@ router.delete('/api/workouts/:id/exercises/:exercise_id', function(req, res, nex
 
 });
 
-// Partially update the workout with the given id by adding the id of an exercise 
+// Partially update the workout with the given id by adding the id of an exercise
 router.patch('/api/workouts/:id/exercises/:exerciseId', function(req, res, next) {
     var id = req.params.id;
     var exerId = req.params.exerciseId;

@@ -6,9 +6,13 @@ var Workout = require('../models/workout');
 // Create a new athlete
 router.post('/api/athletes', function(req, res, next){
     var athlete = new Athlete(req.body);
-    //athlete["username"] = "Testname";
     athlete.save(function(err, athlete){
-        if (err) {return next(err);}
+        if (err) {
+            console.log(err);
+            if(err.code == 11000) {
+                return res.status(400).json({"message" : "Username taken"});
+            }
+        /* return next(err); */}
         res.status(201).json(athlete);
     })
 });
@@ -21,7 +25,7 @@ router.get('/api/athletes', function(req, res, next) {
     });
 });
 
-
+/*
 // Return the athlete with the given ID
 router.get('/api/athletes/:id', function(req, res, next) {
     var id = req.params.id;
@@ -31,6 +35,20 @@ router.get('/api/athletes/:id', function(req, res, next) {
             return res.status(404).json({"message": "Athlete not found"});
         }
         res.json(athlete);
+    });
+});
+*/
+
+// Return the athlete with the given username -- HAS NO TEST
+router.get('/api/athletes/:name', function(req, res, next) {
+    var name = req.params.name;
+    Athlete.find({ "username": name }, function(err, athlete) {
+        if (err) { return next(err); }
+        if (athlete == null || athlete.length === 0) {
+            res.status(404).json({"message": "Athlete not found"});
+        } else {
+            res.json(athlete);
+        }
     });
 });
 
@@ -73,7 +91,7 @@ router.patch('/api/athletes/:id/:workoutId', function(req, res, next) {
 });
 
 // Update the athlete with the given ID
-router.put('/api/athletes/:id', function(req, res, next) {    
+router.put('/api/athletes/:id', function(req, res, next) {
     var id = req.params.id;
     var newName = req.body.username;
     Athlete.findById(id, function(err, athlete) {
