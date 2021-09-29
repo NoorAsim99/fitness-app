@@ -45,7 +45,7 @@ router.get('/api/athletes/:id', function(req, res, next) {
         }
     });
 
-    var name = req.params.name;
+    var name = req.params.id;
     Athlete.find({ "username": name }, function(err, athlete) {
         if (err) { return next(err); }
         if (athlete == null || athlete.length === 0) {
