@@ -137,7 +137,7 @@ router.delete('/api/athletes/:id', function (req, res, next) {
         if (athlete == null) {
             return res.status(404).json({ "message": "Athlete not found" });
         }
-        return res.status(204);
+        return res.status(204).json(athlete);
     });
 });
 
