@@ -8,11 +8,13 @@ router.post('/api/athletes', function(req, res, next){
     var athlete = new Athlete(req.body);
     athlete.save(function(err, athlete){
         if (err) {
-            console.log(err);
-            if(err.code == 11000) {
+            if(err.code == 11000) { // Means an athlete with that username already exists
                 return res.status(400).json({"message" : "Username taken"});
             }
-        /* return next(err); */}
+            else {
+                return next(err);
+            }
+        }
         res.status(201).json(athlete);
     })
 });
@@ -21,6 +23,9 @@ router.post('/api/athletes', function(req, res, next){
 router.get('/api/athletes', function(req, res, next) {
     Athlete.find(function(err, athletes) {
         if (err) { return next(err); }
+        if (athletes == null) {
+            res.status(404).json({"message": "Athletes not found"});
+        }
         res.json({"athletes": athletes});
     });
 });
