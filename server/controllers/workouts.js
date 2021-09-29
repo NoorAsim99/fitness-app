@@ -184,7 +184,7 @@ router.delete('/api/workouts/:id', function(req, res, next) {
         if (workout == null) {
             return res.status(404).json({"message": "Workout not found"});
         }
-        res.status(204);
+        return res.status(204);
     });
 });
 
