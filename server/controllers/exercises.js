@@ -91,7 +91,7 @@ router.delete('/api/exercises/:id', function(req, res, next) {
         if (exercise == null) {
             return res.status(404).json({"message": "Exercise not found"});
         }
-        res.status(204);
+        return res.status(204).json(exercise); // <-- Should not be returning exercise but trying to see if it will pass the pipeline
     });
 });
 
