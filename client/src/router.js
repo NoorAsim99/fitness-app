@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Workouts from './views/Workouts.vue'
 import AddToWorkout from './views/AddToWorkout.vue'
+import AddWorkout from './views/AddWorkout.vue'
 
 Vue.use(Router)
 
@@ -21,9 +22,14 @@ export default new Router({
       component: Workouts
     },
     {
-      path: '/workouts/:workoutId',
+      path: '/addToWorkout/:workoutId',
       name: 'addToWorkout',
-      Component: AddToWorkout
+      component: AddToWorkout
+    },
+    {
+      path: '/addWorkout',
+      name: 'addWorkout',
+      component: AddWorkout
     }
   ]
 })
