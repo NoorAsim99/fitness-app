@@ -133,7 +133,7 @@ router.delete('/api/workouts/:id/exercises/:exercise_id', function(req, res, nex
                 return value != exerciseId;
             });
             workout.save();
-            res.status(204); // Would like to return the new workout to the client, but returning anything other than a 204 results in a failed pipeline
+            res.status(204).json(workout);
         }
         else {
             return res.status(404).json({"message": "Exercise not found"});
