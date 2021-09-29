@@ -56,7 +56,57 @@
 			"response": []
 		},
 		{
-			"name": "POST new exercise",
+			"name": "POST a log entry",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"var trainingLogId = jsonData._id\r",
+							"pm.environment.set(\"trainingLog_id\", trainingLogId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"entry\": \"Had a bad workout\",\r\n    \"date\": \"16-09-2040\"\r\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/traininglogs",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"traininglogs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a new exercise",
 			"event": [
 				{
 					"listen": "test",
@@ -106,56 +156,6 @@
 			"response": []
 		},
 		{
-			"name": "POST a log entry",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 201\", function(){\r",
-							"    pm.response.to.have.status(201);\r",
-							"});\r",
-							"\r",
-							"var jsonData = pm.response.json();\r",
-							"var trainingLogId = jsonData._id\r",
-							"pm.environment.set(\"trainingLog_id\", trainingLogId);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"entry\": \"Had a great workout\",\r\n    \"date\": \"16-09-2040\"\r\n}"
-				},
-				"url": {
-					"raw": "{{host}}/api/traininglogs",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"api",
-						"traininglogs"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "POST new workout",
 			"event": [
 				{
@@ -190,7 +190,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"Monday\",\r\n    \"exercises\": []\r\n}"
+					"raw": "{\r\n    \"title\": \"Friday\",\r\n    \"exercises\": []\r\n}"
 				},
 				"url": {
 					"raw": "{{host}}/api/workouts",
@@ -200,6 +200,56 @@
 					"path": [
 						"api",
 						"workouts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST exercise in workout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"_id\": \"614461ebb8b79d4450f0dd21\",\r\n    \"title\": \"Squat\",\r\n    \"repetitions\": \"3\",\r\n    \"sets\": \"3\",\r\n    \"intensity\": \"RPE 10\"\r\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/workouts/{{workout_id}}/exercises",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"workouts",
+						"{{workout_id}}",
+						"exercises"
 					]
 				}
 			},
@@ -732,6 +782,10 @@
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{host}}/api/workouts/{{workout_id}}/exercises/{{exercise_id}}",
 					"host": [
