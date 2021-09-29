@@ -27,7 +27,7 @@ export default new Router({
       component: AddToWorkout
     },
     {
-      path: '/addWorkout',
+      path: '/workouts/addWorkout',
       name: 'addWorkout',
       component: AddWorkout
     }

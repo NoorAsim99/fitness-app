@@ -1,0 +1,44 @@
+<template>
+<div class="container">
+<b-row>
+<b-col>
+    <form class="workout-form" @submit.prevent="onSubmit">
+      <div class="form-group">
+      <label for="titleExample">This is the name of your workout</label>
+      <input type="text" class="form-control" id="titleExample" aria-describedby="titleHelp" placeholder="Enter Title" v-model= "title">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</b-col>
+</b-row>
+</div>
+
+</template>
+
+<script>
+import { Api } from '@/Api'
+export default {
+  name: 'addWorkout',
+  data() {
+    return {
+      form: {
+        title: null,
+        exercises: []
+      }
+    }
+  },
+  methods: {
+    onSubmit() {
+      const newWorkout = {
+        title: this.title,
+        exercises: this.exercises
+      }
+      Api.post('workouts', newWorkout)
+        .then((response) => {
+          console.log(response)
+        })
+    }
+  }
+}
+
+</script>

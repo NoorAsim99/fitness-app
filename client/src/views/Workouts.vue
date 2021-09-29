@@ -5,7 +5,7 @@
             <workout-item v-bind:workout="workout" v-on:del-workout="deleteWorkout"/>
         </div>
         <div>
-          <b-button variant="success" @click="$router.push('addWorkout')">Add Workout</b-button>
+          <b-button variant="success" @click="$router.push({path: '/workouts/addWorkout'})">Add Workout</b-button>
           </div>
     </div>
 </template>
