@@ -27,7 +27,7 @@ router.get('/api/athletes', function (req, res, next) {
         if (athletes == null) {
             res.status(404).json({ "message": "Athletes not found" });
         }
-        res.json({ "athletes": athletes });
+        res.status(200).json({ "athletes": athletes });
     });
 });
 
@@ -44,7 +44,7 @@ router.get('/api/athletes/:id', function (req, res, next) {
             if (athlete == null) {
                 return res.status(404).json({"message": "Athlete not found"});
             } else {
-                res.json(athlete);
+                res.status(200).json(athlete);
             }
         });
     } else {
@@ -54,7 +54,7 @@ router.get('/api/athletes/:id', function (req, res, next) {
             if (athlete == null || athlete.length === 0) {
                 res.status(404).json({ "message": "Athlete not found" });
             } else {
-                res.json(athlete);
+                res.status(200).json(athlete);
             }
         });
     }
