@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Workouts from './views/Workouts.vue'
-import AddExercise from './views/AddExercise.vue'
+import AddToWorkout from './views/AddToWorkout.vue'
 
 Vue.use(Router)
 
@@ -22,8 +22,8 @@ export default new Router({
     },
     {
       path: '/workouts/:workoutId',
-      name: 'addExercise',
-      Component: AddExercise
+      name: 'addToWorkout',
+      Component: AddToWorkout
     }
   ]
 })
