@@ -32,7 +32,7 @@ router.get('/api/exercises', function(req, res, next) { // exercises?search=exam
             if (exercises == null) {
                 return res.status(404).json({"message": "Exercises not found"});
             }
-            res.json({"exercises": exercises});
+            res.status(200).json({"exercises": exercises});
     });
 });
 
@@ -91,7 +91,7 @@ router.delete('/api/exercises/:id', function(req, res, next) {
         if (exercise == null) {
             return res.status(404).json({"message": "Exercise not found"});
         }
-        res.json(exercise);
+        res.status(204);
     });
 });
 
