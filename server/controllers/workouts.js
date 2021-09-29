@@ -23,11 +23,10 @@ router.post('/api/workouts/:id/exercises', function(req, res, next) {
         }
         exercise.save(function(err, exercise){
             if (err) {return next(err);}
-            res.status(201).json(exercise);
         })
         workout.exercises.push(exercise._id);
         workout.save();
-        res.json(workout);
+        res.status(201).json(workout);
     });
 });
 
