@@ -32,7 +32,7 @@ router.get('/api/athletes', function (req, res, next) {
 });
 
 
-// Return the athlete with the given ID or given username
+// Return the athlete with the given ID
 router.get('/api/athletes/:id', function (req, res, next) {
     var id = req.params.id;
 
@@ -137,7 +137,7 @@ router.delete('/api/athletes/:id', function (req, res, next) {
         if (athlete == null) {
             return res.status(404).json({ "message": "Athlete not found" });
         }
-        res.json(athlete);
+        res.status(204);
     });
 });
 
