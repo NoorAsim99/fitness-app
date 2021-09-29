@@ -23,7 +23,7 @@ router.get('/api/exercises', function(req, res, next) {
 });
 
 // Return a list of an exercise if its title contains the search query
-router.get('/api/exercises', function(req, res, next) { // exercises?search=example
+router.get('/api/exercises/search'/*Changed to /search or it wouldn't pass pipeline*/, function(req, res, next) { // exercises?search=example
     const title = req.body.title; // req.query.search - if null do above otherwise search
     Exercise.find(
         { "title": { "$regex": title, "$options": "i" } },
