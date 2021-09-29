@@ -30,20 +30,33 @@ router.get('/api/athletes', function(req, res, next) {
     });
 });
 
-/*
+
 // Return the athlete with the given ID
 router.get('/api/athletes/:id', function(req, res, next) {
     var id = req.params.id;
     Athlete.findById(req.params.id, function(err, athlete) {
         if (err) { return next(err); }
         if (athlete == null) {
-            return res.status(404).json({"message": "Athlete not found"});
+            /* return res.status(404).json({"message": "Athlete not found"});
+            Instead of ending and returning a 404 check if the athlete was
+            searched for with the username instead of id */
+        } else {
+            res.json(athlete);
         }
-        res.json(athlete);
+    });
+
+    var name = req.params.name;
+    Athlete.find({ "username": name }, function(err, athlete) {
+        if (err) { return next(err); }
+        if (athlete == null || athlete.length === 0) {
+            res.status(404).json({"message": "Athlete not found"});
+        } else {
+            res.json(athlete);
+        }
     });
 });
-*/
 
+/* This route has been baked into the one above and can probably be removed
 // Return the athlete with the given username -- HAS NO TEST
 router.get('/api/athletes/:name', function(req, res, next) {
     var name = req.params.name;
@@ -56,6 +69,7 @@ router.get('/api/athletes/:name', function(req, res, next) {
         }
     });
 });
+*/
 
 // Return the workouts in an athlete with the given ID
 router.get('/api/athletes/:id/workouts', function(req, res, next) {
