@@ -65,7 +65,11 @@ router.get('/api/workouts/:id/exercises', function(req, res, next) {
             '_id': { $in: workout.exercises }
         }, function(err, foundExercises){
              if (foundExercises.length != null) {
-                return res.status(200).json(foundExercises);
+                return res.status(200).json(    // Was just foundExercises being returned but this may be easier to use
+                    {
+                        "workout" : workout,
+                        "exercises" : foundExercises
+                    });
              } else {
                 return res.status(404).json({"message": "Exercises not found"});
             }

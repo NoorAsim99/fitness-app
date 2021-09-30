@@ -5,6 +5,7 @@ import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import UserHome from './views/UserHome.vue'
 import Workouts from './views/Workouts.vue'
+import Traininglog from './views/Traininglog.vue'
 
 Vue.use(Router)
 
@@ -36,6 +37,11 @@ export default new Router({
       path: '/workouts',
       name: 'workouts',
       component: Workouts
+    },
+    {
+      path: '/traininglog',
+      name: 'traininglog',
+      component: Traininglog
     }
   ]
 })

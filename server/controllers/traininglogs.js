@@ -11,6 +11,17 @@ router.post('/api/traininglogs', function(req, res, next){
     })
 });
 
+// Return a list of all traininglog
+router.get('/api/traininglogs', function(req, res, next) {
+    Traininglog.find(function(err, traininglogs) {
+        if (err) { return next(err); }
+        if (traininglogs == null) {
+            return res.status(404).json({ "message": "No logs found" })
+        }
+        res.status(200).json({"traininglogs": traininglogs});
+    });
+});
+
 //return the training log of an athlete with the given ID
 router.get('/api/traininglogs/:id', function(req, res, next) {
     var id = req.params.id;
