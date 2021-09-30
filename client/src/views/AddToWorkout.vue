@@ -24,6 +24,11 @@
 
 </b-col>
 </b-row>
+<b-row>
+  <b-col>
+    <button type="button" class="btn btn-dark" @click="$router.push({ name: 'workouts'})">Go Back</button>
+  </b-col>
+</b-row>
 </div>
 </template>
 
