@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var Workout = require('../models/workout');
 var Exercise = require('../models/exercise');
-const { populate } = require('../models/exercise');
 
 // Create a new workout
 router.post('/api/workouts', function(req, res, next){
@@ -16,7 +15,7 @@ router.post('/api/workouts', function(req, res, next){
 // Create a new exercise and directly add it to a workout
 router.post('/api/workouts/:id/exercises', function(req, res, next) {
     var id = req.params.id;
-    const exercise = Exercise({id: req.body._id, title: req.body.title, repetitions: req.body.repetitions, sets: req.body.sets});
+    const exercise = Exercise({title: req.body.title, repetitions: req.body.repetitions, sets: req.body.sets});
     Workout.findById(req.params.id, function(err, workout) {
         if (err) { return next(err); }
         if (workout == null) {
@@ -24,11 +23,9 @@ router.post('/api/workouts/:id/exercises', function(req, res, next) {
         }
         exercise.save(function(err, exercise){
             if (err) {return next(err);}
-            
         })
         workout.exercises.push(exercise._id);
         workout.save();
-        
         res.status(201).json(workout);
     });
 });
@@ -123,7 +120,7 @@ router.delete('/api/workouts/:id/exercises/:exercise_id', function(req, res, nex
                     return res.status(404).json({"message": "Exercise not found"});
                 }
                 res.json(exercise);
-                workout.exercises = workout.exercises.filter(function(value, index, arr){ 
+                workout.exercises = workout.exercises.filter(function(value, index, arr){
                     return value != exerciseId;
                 });
                 workout.save();
@@ -132,7 +129,7 @@ router.delete('/api/workouts/:id/exercises/:exercise_id', function(req, res, nex
 
         // This will only remove the exercise from the workout, without deleting it from the DB
         if(workout.exercises.includes(exerciseId)) {
-            workout.exercises = workout.exercises.filter(function(value, index, arr){ 
+            workout.exercises = workout.exercises.filter(function(value, index, arr){
                 return value != exerciseId;
             });
             workout.save();
@@ -145,7 +142,7 @@ router.delete('/api/workouts/:id/exercises/:exercise_id', function(req, res, nex
 
 });
 
-// Partially update the workout with the given id by adding the id of an exercise 
+// Partially update the workout with the given id by adding the id of an exercise
 router.patch('/api/workouts/:id/exercises/:exerciseId', function(req, res, next) {
     var id = req.params.id;
     var exerId = req.params.exerciseId;
@@ -187,7 +184,7 @@ router.delete('/api/workouts/:id', function(req, res, next) {
         if (workout == null) {
             return res.status(404).json({"message": "Workout not found"});
         }
-        res.status(204).json(workout);
+        return res.status(204).json(workout);
     });
 });
 
