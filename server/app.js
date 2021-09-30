@@ -6,8 +6,8 @@ var cors = require('cors');
 var history = require('connect-history-api-fallback');
 var athletesController = require('./controllers/athletes');
 var exercisesController = require('./controllers/exercises');
-var workoutController = require('./controllers/workouts');
-var traininglogController = require('./controllers/traininglogs');
+var workoutsController = require('./controllers/workouts');
+var traininglogsController = require('./controllers/traininglogs');
 
 // Variables
 var mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/fitnessApp';
