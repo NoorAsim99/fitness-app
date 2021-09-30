@@ -5,8 +5,8 @@
     <h2>{{ errorMessage }}</h2>
     <b-button v-on:click="newTraininglog()">Add a new training log </b-button>
     <form>
-      <input v-model="entryStr" placeholder="Type an entry" />
-      <input v-model="dateStr" placeholder="Type a date" />
+      <input class="input" v-model="entryStr" placeholder="Type an entry" />
+      <input class="input" v-model="dateStr" placeholder="Type a date" />
     </form>
     <b-button v-on:click="getTraininglogs()">Get logs </b-button>
     <ul>
@@ -26,7 +26,7 @@ export default {
   name: 'traininglog',
   data() {
     return {
-      message: 'none',
+      message: '',
       successMessage: '',
       errorMessage: '',
       entryStr: '',
@@ -85,6 +85,10 @@ export default {
 }
 
 h1 {
-  color: black;
+  color: lightgray;
+}
+
+.input {
+  color: white;
 }
 </style>

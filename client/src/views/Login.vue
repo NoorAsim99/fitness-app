@@ -60,7 +60,7 @@ export default {
               this.userId = response.data[0]._id
               console.log(this.user + ' with id: ' + this.userId)
               // this.$router.push('/', { user: this.userId })
-              this.$router.push({ name: 'userHome', params: { userId: this.userId } })
+              this.$router.push({ name: 'userHome', params: { userId: this.userId, userName: this.user } })
             }
           })
           .catch((error) => {

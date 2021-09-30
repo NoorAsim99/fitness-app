@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <h1>Here are all your workouts</h1>
         <div v-for="workout in workouts" v-bind:key="workout._id">
             <workout-item v-bind:workout="workout"/>
@@ -34,3 +34,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.container {
+  color: lightgray;
+}
+</style>
