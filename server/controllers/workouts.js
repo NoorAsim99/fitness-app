@@ -23,11 +23,10 @@ router.post('/api/workouts/:id/exercises', function(req, res, next) {
         }
         exercise.save(function(err, exercise){
             if (err) {return next(err);}
-            res.status(201).json(exercise);
         })
         workout.exercises.push(exercise._id);
         workout.save();
-        res.json(workout);
+        res.status(201).json(workout);
     });
 });
 
@@ -134,7 +133,7 @@ router.delete('/api/workouts/:id/exercises/:exercise_id', function(req, res, nex
                 return value != exerciseId;
             });
             workout.save();
-            res.json(workout);
+            res.status(204).json(workout);
         }
         else {
             return res.status(404).json({"message": "Exercise not found"});
@@ -185,7 +184,7 @@ router.delete('/api/workouts/:id', function(req, res, next) {
         if (workout == null) {
             return res.status(404).json({"message": "Workout not found"});
         }
-        res.json(workout);
+        return res.status(204).json(workout);
     });
 });
 
