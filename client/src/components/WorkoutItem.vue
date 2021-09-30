@@ -1,6 +1,13 @@
 <template>
     <div>
-        <p>{{workout.title}} has these exercises: {{workout.exercises}}</p>
+        <p>{{workout.title}} has these exercises:</p>
+        <ul>
+          <li v-for="exercise in workout.exercises" :key="exercise._id">
+            {{exercise.title}} - reps: {{exercise.repetitions}} sets: {{exercise.sets}} intensity: {{exercise.intensity}}
+          </li>
+        </ul>
+        <b-button variant="danger" v-on:click="$emit('del-workout', workout._id)">X</b-button>
+        <b-button variant="success" @click="$router.push({ name: 'addToWorkout', params: {workoutId: workout._id}})">+</b-button>
     </div>
 </template>
 

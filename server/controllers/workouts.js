@@ -15,7 +15,7 @@ router.post('/api/workouts', function(req, res, next){
 // Create a new exercise and directly add it to a workout
 router.post('/api/workouts/:id/exercises', function(req, res, next) {
     var id = req.params.id;
-    const exercise = Exercise({title: req.body.title, repetitions: req.body.repetitions, sets: req.body.sets});
+    const exercise = Exercise({id: req.body._id, title: req.body.title, repetitions: req.body.repetitions, sets: req.body.sets, intensity: req.body.intensity});
     Workout.findById(req.params.id, function(err, workout) {
         if (err) { return next(err); }
         if (workout == null) {
@@ -32,10 +32,12 @@ router.post('/api/workouts/:id/exercises', function(req, res, next) {
 
 // Return a list of all workouts
 router.get('/api/workouts', function(req, res, next) {
-    Workout.find(function(err, workouts) {
-        if (err) { return next(err); }
+    Workout.find().populate('exercises').
+    exec(function(err, workouts){
+        if (err) { return next(err); }       
         res.json({"workouts": workouts});
-    });
+    })
+
 });
 
 // Return the workout with the given ID

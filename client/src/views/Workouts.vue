@@ -2,8 +2,11 @@
     <div class="container">
         <h1>Here are all your workouts</h1>
         <div v-for="workout in workouts" v-bind:key="workout._id">
-            <workout-item v-bind:workout="workout"/>
+            <workout-item v-bind:workout="workout" v-on:del-workout="deleteWorkout"/>
         </div>
+        <div>
+          <b-button variant="success" @click="$router.push({path: '/workouts/addWorkout'})">Add Workout</b-button>
+          </div>
     </div>
 </template>
 
@@ -26,6 +29,16 @@ export default {
         this.workouts = []
         console.log(error)
       })
+  },
+  methods: {
+    deleteWorkout(id) {
+      console.log(`Delete workout with id ${id}`)
+      Api.delete(`/workouts/${id}`)
+        .then(response => {
+          const index = this.workouts.findIndex(workouts => workouts._id === id)
+          this.workouts.splice(index, 1)
+        })
+    }
   },
   data() {
     return {
