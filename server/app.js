@@ -41,8 +41,8 @@ app.get('/api', function(req, res) {
 
 app.use(athletesController);
 app.use(exercisesController);
-app.use(workoutController);
-app.use(traininglogController);
+app.use(workoutsController);
+app.use(traininglogsController);
 
 // Catch all non-error handler for api (i.e., 404 Not Found)
 app.use('/api/*', function (req, res) {

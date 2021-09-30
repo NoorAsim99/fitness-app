@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import UserHome from './views/UserHome.vue'
+import Workouts from './views/Workouts.vue'
 
 Vue.use(Router)
 
@@ -30,6 +31,11 @@ export default new Router({
       path: '/userHome/:userId',
       name: 'userHome',
       component: UserHome
+    },
+    {
+      path: '/workouts',
+      name: 'workouts',
+      component: Workouts
     }
   ]
 })
