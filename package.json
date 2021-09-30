@@ -5,5 +5,11 @@
   "main": "server/app.js",
   "scripts": {
     "postinstall": "npm install --prefix server && npm install --prefix client && npm install --only=dev --prefix client && npm run build --prefix client"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.10.1",
+    "bootstrap": "^5.1.1",
+    "portal-vue": "^2.1.7",
+    "vue": "^2.6.14"
   }
 }
