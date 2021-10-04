@@ -46,6 +46,16 @@ router.delete('/api/traininglogs/:id', function(req, res, next) {
     });
 });
 
+router.delete('/api/traininglogs', function(req, res, next) {
+    Traininglog.deleteMany(function(err, traininglog) {
+        if (err) { return next(err); }
+        if (traininglog == null) {
+            return res.status(404).json({"message": "No Traininglogs Found"});
+        }
+        return res.status(204).json(traininglog);
+    });
+});
+
 
 // Error handler (must be registered last)
 router.use(function(err, req, res, next) {
