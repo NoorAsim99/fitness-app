@@ -8,6 +8,7 @@ import Workouts from './views/Workouts.vue'
 import Traininglog from './views/Traininglog.vue'
 import AddToWorkout from './views/AddToWorkout.vue'
 import AddWorkout from './views/AddWorkout.vue'
+import EditWorkout from './views/EditWorkout.vue'
 
 Vue.use(Router)
 
@@ -54,6 +55,11 @@ export default new Router({
       path: '/workouts/addWorkout',
       name: 'addWorkout',
       component: AddWorkout
+    },
+    {
+      path: '/editWorkout/:workoutId',
+      name: 'editWorkout',
+      component: EditWorkout
     }
   ]
 })
