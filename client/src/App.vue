@@ -7,9 +7,12 @@
           <ul class="nav__links">
           </ul>
         </nav>
-        <a v-if="'DETERMINEifLOGGEDin' === 'DETERMINEifLOGGEDin'" class="loginbtn" href="login"> <b-button class="lgn_btn">Login</b-button> </a>
-        <a v-else class="loginbtn" href="login">  <b-button class="lgn_btn" v-on:click="logout()" >Logout</b-button> </a>
-        <a class="registerBtn" href="register"> <b-button class="lgn_btn">Register</b-button> </a>
+        <router-link class="lgn_btn" to="/login">
+          Login
+        </router-link>
+        <router-link class="lgn_btn" to="/register">
+          Register
+        </router-link>
       </header>
     </div>
     <!-- Render the content of the current page view -->

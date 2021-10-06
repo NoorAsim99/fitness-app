@@ -27,10 +27,14 @@ export default {
   data() {
     return {
       form: {
-        title: null,
-        exercises: []
+        title: '',
+        exercises: [],
+        userId: 0
       }
     }
+  },
+  mounted() {
+    this.userId = this.$route.params.userId
   },
   methods: {
     onSubmit() {
@@ -41,6 +45,7 @@ export default {
       Api.post('workouts', newWorkout)
         .then((response) => {
           console.log(response)
+          Api.patch('athletes/' + this.userId + '/' + response.data._id)
         })
     }
   }

@@ -91,7 +91,7 @@ router.get('/api/athletes/:id/workouts', function (req, res, next) {
             '_id': { $in: athlete.workouts }
         }, function (err, foundWorkouts) {
             if (foundWorkouts.length != null) {
-                return res.status(200).json(foundWorkouts);
+                return res.status(200).json({"workouts": foundWorkouts});
             } else {
                 return res.status(404).json({ "message": "Workouts not found" });
             }

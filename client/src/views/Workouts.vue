@@ -5,7 +5,7 @@
             <workout-item v-bind:workout="workout" v-on:del-workout="deleteWorkout"/>
         </div>
         <div>
-          <b-button variant="success" @click="$router.push({path: '/workouts/addWorkout'})">Add Workout</b-button>
+          <router-link class="routerLink" :to="{name: 'addWorkout', params: { userId: this.userId } }"> Add workout </router-link>
           </div>
     </div>
 </template>
@@ -19,8 +19,16 @@ export default {
   components: {
     'workout-item': WorkoutItem
   },
+  data() {
+    return {
+      workouts: [],
+      userId: 0
+    }
+  },
   mounted() {
-    Api.get('workouts')
+    this.userId = this.$route.params.userId
+
+    Api.get('athletes/' + this.$route.params.userId + '/workouts')
       .then(response => {
         console.log(response)
         this.workouts = response.data.workouts
@@ -38,11 +46,6 @@ export default {
           const index = this.workouts.findIndex(workouts => workouts._id === id)
           this.workouts.splice(index, 1)
         })
-    }
-  },
-  data() {
-    return {
-      workouts: []
     }
   }
 }

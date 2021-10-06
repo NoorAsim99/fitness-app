@@ -26,7 +26,7 @@
 </b-row>
 <b-row>
   <b-col>
-    <button type="button" class="btn btn-dark" @click="$router.push({ name: 'workouts'})">Go Back</button>
+    <router-link class="reg_btn" :to="{name: 'workouts', params: { userId: this.userId } }"> Go back </router-link>
   </b-col>
 </b-row>
 </div>
@@ -39,6 +39,7 @@ export default {
   data() {
     return {
       workoutId: 0,
+      userId: 0,
       form: {
         title: null,
         repetitions: null,
@@ -49,6 +50,7 @@ export default {
   },
   created() {
     this.workoutId = this.$route.params.workoutId
+    this.userId = this.$route.params.userId
   },
   methods: {
     onSubmit() {

@@ -37,7 +37,7 @@ export default new Router({
       component: UserHome
     },
     {
-      path: '/workouts',
+      path: '/workouts/:userId',
       name: 'workouts',
       component: Workouts
     },
@@ -47,12 +47,12 @@ export default new Router({
       component: Traininglog
     },
     {
-      path: '/addToWorkout/:workoutId',
+      path: '/addToWorkout/:workoutId/:userId',
       name: 'addToWorkout',
       component: AddToWorkout
     },
     {
-      path: '/workouts/addWorkout',
+      path: '/workouts/addWorkout/:userId',
       name: 'addWorkout',
       component: AddWorkout
     },
