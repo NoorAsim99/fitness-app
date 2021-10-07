@@ -298,6 +298,48 @@
 			"response": []
 		},
 		{
+			"name": "GET all Training Logs",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/traininglogs",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"traininglogs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "GET athlete with given ID",
 			"event": [
 				{
@@ -632,6 +674,9 @@
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -646,6 +691,10 @@
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{host}}/api/workouts",
 					"host": [
@@ -869,6 +918,53 @@
 			],
 			"request": {
 				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Mash Potatoe\"\r\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/workouts/{{workout_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"workouts",
+						"{{workout_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT change workout title",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
 				"header": [
 					{
 						"key": "Accept",
