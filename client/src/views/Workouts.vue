@@ -5,7 +5,7 @@
             <workout-item v-bind:workout="workout" v-on:del-workout="deleteWorkout"/>
         </div>
         <div>
-          <router-link class="routerLink" :to="{name: 'addWorkout', params: { userId: this.userId } }"> Add workout </router-link>
+          <router-link class="reg_btn" :to="{name: 'addWorkout', params: { userId: this.userId } }"> Add workout </router-link>
           </div>
     </div>
 </template>

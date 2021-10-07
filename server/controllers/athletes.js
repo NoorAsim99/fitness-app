@@ -89,7 +89,8 @@ router.get('/api/athletes/:id/workouts', function (req, res, next) {
 
         Workout.find({
             '_id': { $in: athlete.workouts }
-        }, function (err, foundWorkouts) {
+        }).populate('exercises').
+        exec(function(err, foundWorkouts){
             if (foundWorkouts.length != null) {
                 return res.status(200).json({"workouts": foundWorkouts});
             } else {
