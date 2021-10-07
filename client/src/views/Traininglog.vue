@@ -85,7 +85,7 @@ export default {
           }
         })
         .catch(error => {
-          this.workouts = []
+          this.logs = []
           console.log(error)
         })
     }
