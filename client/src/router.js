@@ -57,7 +57,7 @@ export default new Router({
       component: AddWorkout
     },
     {
-      path: '/editWorkout/:workoutId',
+      path: '/editWorkout/:workoutId/:userId',
       name: 'editWorkout',
       component: EditWorkout
     }
