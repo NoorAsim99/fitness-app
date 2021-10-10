@@ -215,6 +215,7 @@ router.put('/api/workouts/:id', function(req, res, next) {
             return res.status(404).json({"message": "Workout not found"});
         }
         workout.title = req.body.title;
+        workout.exercises = req.body.exercises;
         workout.save();
         res.json(workout);
     });
