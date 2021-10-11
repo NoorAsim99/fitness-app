@@ -8,6 +8,7 @@ import Workouts from './views/Workouts.vue'
 import Traininglog from './views/Traininglog.vue'
 import AddToWorkout from './views/AddToWorkout.vue'
 import AddWorkout from './views/AddWorkout.vue'
+import EditWorkout from './views/EditWorkout.vue'
 
 Vue.use(Router)
 
@@ -36,7 +37,7 @@ export default new Router({
       component: UserHome
     },
     {
-      path: '/workouts',
+      path: '/workouts/:userId',
       name: 'workouts',
       component: Workouts
     },
@@ -46,14 +47,19 @@ export default new Router({
       component: Traininglog
     },
     {
-      path: '/addToWorkout/:workoutId',
+      path: '/addToWorkout/:workoutId/:userId',
       name: 'addToWorkout',
       component: AddToWorkout
     },
     {
-      path: '/workouts/addWorkout',
+      path: '/workouts/addWorkout/:userId',
       name: 'addWorkout',
       component: AddWorkout
+    },
+    {
+      path: '/editWorkout/:workoutId/:userId',
+      name: 'editWorkout',
+      component: EditWorkout
     }
   ]
 })

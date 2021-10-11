@@ -15,6 +15,7 @@
          <b-button v-on:click="deleteTraininglog(log._id)">Delete this log </b-button>
       </li>
     </ul>
+    <b-button variant="danger" v-on:click="deleteTrainingLogs(logs)">DELETE ALL </b-button>
   </div>
 </template>
 
@@ -73,6 +74,19 @@ export default {
         })
         .catch((error) => {
           this.errorMessage = error.response.data.message
+        })
+    },
+    deleteTrainingLogs(logs) {
+      Api.delete('/traininglogs')
+        .then(response => {
+          console.log(response)
+          for (let i = 0; i < logs.length; i++) {
+            this.traininglog.$remove(logs)
+          }
+        })
+        .catch(error => {
+          this.logs = []
+          console.log(error)
         })
     }
   }

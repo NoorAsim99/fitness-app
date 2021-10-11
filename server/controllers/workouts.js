@@ -194,6 +194,33 @@ router.delete('/api/workouts/:id', function(req, res, next) {
     });
 });
 
+router.patch('/api/workouts/:id', function(req, res, next) {
+    var id = req.params.id;
+        Workout.findById(id, function(err, workout) {
+        if (err) { return next(err); }
+        if (workout == null) {
+            return res.status(404).json({"message": "Workout not found"});
+        }
+        workout.title = req.body.title;
+        workout.save();
+        res.json(workout);
+    });
+});
+
+router.put('/api/workouts/:id', function(req, res, next) {
+    var id = req.params.id;
+        Workout.findById(id, function(err, workout) {
+        if (err) { return next(err); }
+        if (workout == null) {
+            return res.status(404).json({"message": "Workout not found"});
+        }
+        workout.title = req.body.title;
+        workout.exercises = req.body.exercises;
+        workout.save();
+        res.json(workout);
+    });
+});
+
 // Error handler (must be registered last)
 router.use(function(err, req, res, next) {
     console.error(err.stack);

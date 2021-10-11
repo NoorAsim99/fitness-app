@@ -7,7 +7,7 @@
         <h2>Hello {{ userName }}</h2>
       </div>
       <div class="col-md-6">
-        <router-link class="routerLink" to="/workouts"> Workouts </router-link>
+        <router-link class="routerLink" :to="{name: 'workouts', params: { userId: this.userId } }"> Workouts </router-link>
         <router-link class="routerLink" to="/traininglog">
           Traininglog
         </router-link>

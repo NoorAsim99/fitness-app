@@ -298,6 +298,48 @@
 			"response": []
 		},
 		{
+			"name": "GET all Training Logs",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/traininglogs",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"traininglogs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "GET athlete with given ID",
 			"event": [
 				{
@@ -632,6 +674,9 @@
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [
@@ -646,6 +691,10 @@
 						"type": "text"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "{{host}}/api/workouts",
 					"host": [
@@ -847,6 +896,53 @@
 							"key": "",
 							"value": null
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch change workout title",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Mash Potatoe\"\r\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/workouts/{{workout_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"workouts",
+						"{{workout_id}}"
 					]
 				}
 			},
@@ -1079,6 +1175,53 @@
 			"response": []
 		},
 		{
+			"name": "PUT change workout title",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Mash Potatoe\"\r\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/workouts/{{workout_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"workouts",
+						"{{workout_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "DELETE workout",
 			"event": [
 				{
@@ -1159,6 +1302,98 @@
 						"api",
 						"traininglogs",
 						"{{trainingLog_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a log entry Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"var jsonData = pm.response.json();\r",
+							"var trainingLogId = jsonData._id\r",
+							"pm.environment.set(\"trainingLog_id\", trainingLogId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"entry\": \"Had a bad workout\",\r\n    \"date\": \"16-09-2040\"\r\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/traininglogs",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"traininglogs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE all traininglogs",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function(){\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/traininglogs",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"traininglogs"
 					]
 				}
 			},
