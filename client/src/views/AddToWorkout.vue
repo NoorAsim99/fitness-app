@@ -93,11 +93,17 @@ export default {
         sets: this.sets,
         intensity: this.intensity
       }
-      Api.post(`/workouts/${this.workoutId}/exercises`, newExercise).then(
-        (response) => {
-          console.log(response)
-        }
-      )
+      Api.post(`/workouts/${this.workoutId}/exercises`, newExercise)
+        .then(
+          (response) => {
+            console.log(response)
+            if (response.status === 201) {
+              console.log('Added exercise')
+            }
+          })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }
 }

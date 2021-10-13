@@ -54,8 +54,14 @@ export default {
       }
       Api.post('workouts', newWorkout).then((response) => {
         console.log(response)
+        if (response.status === 201) {
+          console.log('Workout added')
+        }
         Api.patch('athletes/' + this.userId + '/' + response.data._id)
       })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }
 }

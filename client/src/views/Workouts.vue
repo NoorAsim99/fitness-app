@@ -46,6 +46,9 @@ export default {
           const index = this.workouts.findIndex(workouts => workouts._id === id)
           this.workouts.splice(index, 1)
         })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }
 }
