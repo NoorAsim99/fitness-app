@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>client</title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but client doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>client</title>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but client doesn't work properly without JavaScript enabled. Please enable it to
+      continue.</strong>
+  </noscript>
+  <div id="app">
 
 
 
-    </div>
-    <!-- built files will be auto injected -->
-  </body>
+  </div>
+  <!-- built files will be auto injected -->
+</body>
+
 </html>
 
 
 
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
-
-* {
+  * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     background-color: #080C14
-}
+  }
 
-/* Center content */
-.center-content {
+  /* Center content */
+  .center-content {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -45,84 +48,131 @@
     width:  90%;
     height: 90%;
     object-fit: cover;*/
-}
+  }
 
 
-#previewImg {
-  max-width: 90%;
-  height: auto;
-}
+  #previewImg {
+    max-width: 90%;
+    height: auto;
+  }
 
-#loginImg {
-  max-width: 90%;
-  height: auto;
-  padding: 0px 30px;
-}
+  #loginImg {
+    max-width: 90%;
+    height: auto;
+    padding: 0px 30px;
+  }
 
 
-/* Top bar  */
-li, a, button {
+  /* Top bar  */
+  li,
+  a,
+  button {
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
     font-size: 16px;
     color: white;
     text-decoration: none;
-}
+  }
 
-header {
+  .header_reg {
     display: flex;
     justify-content: flex-end;
     align-items: center;
     padding: 30px 10%;
-}
+  }
 
-.logo {
-  cursor: pointer;
-  margin-right: auto;
-}
+  .logo {
+    cursor: pointer;
+    margin-right: auto;
+  }
 
-.nav__links {
-  list-style: none;
-}
+  .nav__links {
+    list-style: none;
+  }
 
-.nav__links li {
-  display: inline-block;
-  padding: 0px 20px;
-}
+  .nav__links li {
+    display: inline-block;
+    padding: 0px 20px;
+  }
 
-.nav__links li a {
-  transition: all 0.3s ease 0s;
-}
+  .nav__links li a {
+    transition: all 0.3s ease 0s;
+  }
 
-.nav__links li a:hover {
-  color: #D90429
-}
+  .nav__links li a:hover {
+    color: #D90429
+  }
 
-.lgn_btn {
-  margin-left: 20px;
-  padding: 9px 25px;
-  background-color: rgba(217, 4, 41, 1);
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
-}
-
-.reg_btn {
-  margin: 30px;
-  padding: 9px 25px;
-  background-color: rgba(217, 4, 41, 1);
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease 0s;
-}
-
-.lgn_btn:hover {
-  background-color: rgba(217, 4, 41, 0.8);
-}
+  .lgn_btn {
+    margin-left: 20px;
+    padding: 9px 25px;
+    background-color: rgba(217, 4, 41, 1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+  }
 
 
+  .reg_btn {
+    margin: 30px;
+    padding: 9px 25px;
+    background-color: rgba(217, 4, 41, 1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+  }
+
+  .lgn_btn:hover {
+    background-color: rgba(217, 4, 41, 0.8);
+  }
+
+  @media screen and (max-width: 768px) {
+    .lgn_btn {
+      display: none !important;
+    }
+
+    .header_reg {
+      display: none !important;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .center-content {
+      display: none !important;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .lgn_btn_mobile {
+      display: none !important;
+    }
+
+    .header_mobile {
+      display: none !important;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .center-content-mobile {
+      display: none !important;
+    }
+  }
+
+  .lgn_btn_mobile {
+    margin-left: 20px;
+    padding: 9px 25px;
+    background-color: rgba(217, 4, 41, 1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+  }
+
+  .header_mobile {
+    padding: 30px 10%;
+  }
 
 
 
@@ -130,10 +180,10 @@ header {
 
 
 
-/* html {} */
+  /* html {} */
 
 
-/*
+  /*
 
 <div id="topBar">
         <img id="logo" src="assets/Logo.png" alt="Fitness Tracker Logo">
@@ -249,8 +299,4 @@ body {
 
 
 */
-
-
 </style>
-
-
