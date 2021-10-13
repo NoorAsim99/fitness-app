@@ -7,6 +7,14 @@
         alt="Features preview and signup"
       /> </router-link>
     </div>
+
+    <div class="center-content-mobile">
+      <router-link class="logo" to="/register"> <img
+        id="previewImg"
+        src="assets/Card.png"
+        alt="Features preview and signup"
+      /> </router-link>
+    </div>
   </div>
 </template>
 
