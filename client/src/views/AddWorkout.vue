@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <b-container fluid='md' class="container">
     <b-row>
       <b-col>
         <form class="workout-form" @submit.prevent="onSubmit">
@@ -29,7 +29,7 @@
         </button>
       </b-col>
     </b-row>
-  </div>
+  </b-container>
 </template>
 
 <script>
