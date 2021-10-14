@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <b-container fluid='md' class="container">
     <b-row>
       <b-col>
         <form class="workout-form" @submit.prevent="onSubmit">
@@ -29,7 +29,7 @@
         </button>
       </b-col>
     </b-row>
-  </div>
+  </b-container>
 </template>
 
 <script>
@@ -54,8 +54,14 @@ export default {
       }
       Api.post('workouts', newWorkout).then((response) => {
         console.log(response)
+        if (response.status === 201) {
+          console.log('Workout added')
+        }
         Api.patch('athletes/' + this.userId + '/' + response.data._id)
       })
+        .catch((error) => {
+          console.log(error)
+        })
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+<b-container fluid='md' class="container">
 <b-row>
 <b-col>
     <form class="exercise-form" @submit.prevent="onPatch">
@@ -32,7 +32,7 @@
         </router-link>
   </b-col>
 </b-row>
-</div>
+</b-container>
 </template>
 
 <script>
@@ -59,6 +59,12 @@ export default {
       Api.patch(`/workouts/${this.workoutId}`, newTitle)
         .then((response) => {
           console.log(response)
+          if (response.status === 200) {
+            console.log('Workout patched')
+          }
+        })
+        .catch((error) => {
+          console.log(error)
         })
     },
     onPut() {
@@ -69,6 +75,12 @@ export default {
       Api.put(`/workouts/${this.workoutId}`, newTitle)
         .then((response) => {
           console.log(response)
+          if (response.status === 200) {
+            console.log('Put new workout in place of old')
+          }
+        })
+        .catch((error) => {
+          console.log(error)
         })
     }
   }

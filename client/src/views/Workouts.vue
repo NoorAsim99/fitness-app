@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <b-container fluid='md' class="container">
         <h1>Here are all your workouts</h1>
         <div v-for="workout in workouts" v-bind:key="workout._id">
             <workout-item v-bind:workout="workout" v-on:del-workout="deleteWorkout"/>
@@ -7,7 +7,7 @@
         <div>
           <router-link class="reg_btn" :to="{name: 'addWorkout', params: { userId: this.userId } }"> Add workout </router-link>
           </div>
-    </div>
+    </b-container>
 </template>
 
 <script>
@@ -45,6 +45,9 @@ export default {
         .then(response => {
           const index = this.workouts.findIndex(workouts => workouts._id === id)
           this.workouts.splice(index, 1)
+        })
+        .catch((error) => {
+          console.log(error)
         })
     }
   }

@@ -74,12 +74,15 @@ The app will also allow you to keep a training log, where you write notes on the
 
 ### Pages
 
-* Home: This page will show you links to all the sub-menus of the app, such as Exercises, Program and Training log. It will also show you your program for the current week. 
-* Exercises: A page showing you a link to the list of exercises you have already created and a link to a page where you will create new exercises to add to the list. 
-* Training Log: A page where you can make notes to keep track of your progress or anything you find relevant.
-* View Training Log Entry: This page will show you a specific entry into the training log, chosen on the Training Log page.
-* Create New Exercise: A page that asks you to input the name of an exercise that will be added to your list of exercises and optionally your Personal Best in that exercise. 
-* List Of Exercises: A page that shows a list of all the exercises you have input into the app. 
+* Home / UserHome: Shows you an image with general information and links to the register and Login pages. A slightly alternate page is shown if you are logged in. 
+* Register: This is where you enter your username to create an account on the app
+* Login: This page is where you enter yuur username after registering to log into the app 
+* Training Log: A page where you can write entires into a trasining log to keep track of your progress or anything you find relevant.
+* Workouts: A page where you can create new workouts, add exercises to workouts, change the name of a workout and also delete workouts.
+* AddWorkout: A page where you enter the name of a workout and then submit it to create a new workout.
+* AddToWorkout: Here you add exercises to workouts by filling out the form and submitting.
+* EditWorkout: This page allows you to change the name of a workout
+
 
 
 ### Entity-Relationship (ER) Diagram
