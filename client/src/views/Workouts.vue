@@ -1,6 +1,6 @@
 <template>
     <b-container fluid='md' class="container">
-        <h1>Here are all your workouts</h1>
+        <h1>Your Workout Program:</h1>
         <div v-for="workout in workouts" v-bind:key="workout._id">
             <workout-item v-bind:workout="workout" v-on:del-workout="deleteWorkout"/>
         </div>

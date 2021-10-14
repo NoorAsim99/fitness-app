@@ -7,7 +7,7 @@
       <label for="titleExample">Change the name of this workout</label>
       <input type="text" class="form-control" id="titleExample" aria-describedby="titleHelp" placeholder="Enter New Name" v-model= "title">
       </div>
-      <button type="submit" class="btn btn-primary">Patch</button>
+      <button type="submit" class="btn-primary">Submit</button>
     </form>
 
 </b-col>
@@ -17,7 +17,7 @@
       <label for="titleExample">Change the name of this workout</label>
       <input type="text" class="form-control" id="titleExample" aria-describedby="titleHelp" placeholder="Enter New Name" v-model= "title">
       </div>
-      <button type="submit" class="btn btn-primary">Put</button>
+      <button type="submit" class="btn-primary">Submit + Reset</button>
     </form>
 
 </b-col>
@@ -87,3 +87,9 @@ export default {
 }
 
 </script>
+
+<style scoped>
+.btn-primary{
+  margin-bottom: 20px;
+}
+</style>

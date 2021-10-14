@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <b-container fluid='md' class="container">
         <p>{{workout.title}} has these exercises:</p>
         <ul>
           <li v-for="exercise in workout.exercises" :key="exercise._id">
@@ -9,7 +9,7 @@
         <b-button variant="danger" v-on:click="$emit('del-workout', workout._id)">X</b-button>
         <b-button variant="success" @click="$router.push({ name: 'addToWorkout', params: {workoutId: workout._id} })">+</b-button>
         <b-button variant="info" @click="$router.push ({ name: 'editWorkout', params: {workoutId: workout._id} })">Edit</b-button>
-    </div>
+    </b-container>
 </template>
 
 <script>
