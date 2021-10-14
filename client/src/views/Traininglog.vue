@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <b-container fluid='md' class= "container">
     <h1>{{ message }}</h1>
     <h2>{{ successMessage }}</h2>
     <h2>{{ errorMessage }}</h2>
@@ -16,7 +16,7 @@
       </li>
     </ul>
     <b-button variant="danger" v-on:click="deleteTrainingLogs(logs)">DELETE ALL </b-button>
-  </div>
+  </b-container>
 </template>
 
 <script>
