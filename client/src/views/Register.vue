@@ -23,7 +23,7 @@
           <p v-else-if="successMessage !== ''" class="successMsg">{{ successMessage }}</p>
           <a class="loginbtn" href="#">
             <!-- <button>Login</button> -->
-            <b-button class="lgn_btn" v-on:click="postUser(fieldInfo)"
+            <b-button class="reg_btn" v-on:click="postUser(fieldInfo)"
               >Register</b-button
             >
           </a>

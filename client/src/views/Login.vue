@@ -22,7 +22,7 @@
           <p v-if="errorMessage !== ''" class="errorMsg">{{ errorMessage }}</p>
           <a class="loginbtn" href="#">
             <!-- <button>Login</button> -->
-            <b-button class="lgn_btn" v-on:click="getUser(fieldInfo)"
+            <b-button class="reg_btn" v-on:click="getUser(fieldInfo)"
               >Login</b-button
             >
           </a>
